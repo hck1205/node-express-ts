@@ -1,12 +1,25 @@
-import express, { Application, Request, Response, NextFunction } from "express";
+import express, { Application } from 'express';
+import morgan from 'morgan';
 
-const app: Application = express();
+export class App {
+  private app: Application;
 
-const add = (a: number, b: number): number => a + b;
+  constructor(private port?: number | string) {
+    this.app = express();
+    this.settings();
+    this.middlewares();
+  }
 
-app.get("/", (req: Request, res: Response, next: NextFunction) => {
-  console.log(add(5, 5));
-  res.send("Hello");
-});
+  settings() {
+    this.app.set('port', this.port || process.env.PORT || 3000);
+  }
 
-app.listen(3000, () => console.log("Server running"));
+  middlewares() {
+    this.app.use(morgan('dev'));
+  }
+
+  async listen() {
+    await this.app.listen(this.app.get('port'));
+    console.log('Server on Port', this.app.get('port'));
+  }
+}
