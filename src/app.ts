@@ -1,6 +1,10 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
 
+// Routes
+import IndexRoutes from './routes/index.routes';
+import PostRoutes from './routes/post.routes';
+
 export class App {
   private app: Application;
 
@@ -8,6 +12,7 @@ export class App {
     this.app = express();
     this.settings();
     this.middlewares();
+    this.routes();
   }
 
   settings() {
@@ -16,6 +21,12 @@ export class App {
 
   middlewares() {
     this.app.use(morgan('dev'));
+    this.app.use(express.json());
+  }
+
+  routes() {
+    this.app.use(IndexRoutes);
+    this.app.use('/posts', PostRoutes);
   }
 
   async listen() {
