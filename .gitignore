@@ -1,3 +1,4 @@
 /node_modules
 dist/*
 /src/lib/client/google.key.ts
+.prettierignore

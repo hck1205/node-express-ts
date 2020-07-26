@@ -1,8 +1,2 @@
-import { Router } from 'express';
-import { indexWelcom } from '../controllers/index';
-
-const router = Router();
-
-router.route('/').get(indexWelcom);
-
-export default router;
+export { default as AuthRouter } from './auth';
+export { default as PostRouter } from './post';
