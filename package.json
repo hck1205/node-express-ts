@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/hck1205/node-express-ts#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "morgan": "^1.10.0",
     "mysql2": "^2.1.0"
   },
